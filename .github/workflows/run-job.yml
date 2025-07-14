@@ -1,0 +1,23 @@
+name: Run GB OTP Script
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+
+    container:
+      image: mcr.microsoft.com/powershell  # Official PowerShell container
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Run PowerShell script
+        run: pwsh otp_export.ps1
+        env:
+          DB_USER: mfmtch
+          DB_PASS: mfmtchq2
